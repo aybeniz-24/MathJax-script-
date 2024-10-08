@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Lab 1</title>
+        <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+        <style> 
+            h2{
+                text-align: center;
+                font-size: 2em;
+                margin: 10px;
+            }
+            input {
+                width: 45px;
+                margin-right: 15px ;
+            }
+            .section{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background: #eee;
+                margin-bottom: 20px;
+            }
+            #section1{
+                border: 1px solid blue;
+            }
+            #section2{
+                border: 1px solid palevioletred;
+            }
+            #section3{
+                border: 1px solid palegreen;
+            }
+            .center{
+                text-align: center;
+                font-size: 1.3em;
+            }
+            .btn{
+                margin-right: 20px;
+                color: white;
+                border: none; 
+                border-radius: 5px; 
+                padding: 5px 10px; 
+                font-size: .9em; 
+                cursor: pointer; 
+            }
+            #btn1{
+                background: linear-gradient(135deg, #4ca1af, #c4e0e5);
+                transition: background 0.3s ease; 
+                &:hover{
+                    background: linear-gradient(135deg, #c4e0e5, #4ca1af);
+                }
+            }
+            #btn2{
+                background: linear-gradient(210deg, #ff6f91, #ffc1e1);
+                transition: background 0.3s ease; 
+                &:hover{
+                    background: linear-gradient(220deg, #ffb3e1, #ff6f91);
+                }
+            }
+            #btn3{
+                background: linear-gradient(210deg, #88aa88, #c4ffc4);
+                transition: background 0.3s ease; 
+                &:hover{
+                    background: linear-gradient(220deg, #98FB98, #88aa88);
+                }
+            }
+        </style>
+    </head>
+    <body>
+
+        <h2>Sıra nömrəsi: 24</h2>
+    
+        <section id="section1" class="section">
+            <div>
+                <p id="p1" class="center">
+                    \( y = b^2 + 3a + \frac{c}{2b^2 - a} \)
+                </p>
+            
+                <div style="margin-top: 20px;" class="center">
+                    <label for="a">a:</label>
+                    <input type="number" id="a" step="any" placeholder="Enter a value" />
+                    <label for="b">b:</label>
+                    <input type="number" id="b" step="any" placeholder="Enter b value" />
+                    <label for="c">c:</label>
+                    <input type="number" id="c" step="any" placeholder="Enter c value" />
+                </div>
+            
+                <div style="margin-top: 20px; " class="center">
+                    <button id="btn1" class="btn" onclick="calculate1()">Calculate</button>
+                    <p id="result">Result: \( y = \)</p>
+                </div>
+        
+            </div>
+        </section>
+
+
+
+        <section id="section2" class="section">
+            <div>
+                <p  class="center">
+                    \( a = \frac{1}{2} \cdot \left( x^{|y - x|}  +  y^\frac{{x + y}}{2} \right) \) 
+                </p>
+            
+                <div style="margin-top: 20px;" class="center">
+                    <label for="x">x:</label>
+                    <input type="number" id="x" step="any" placeholder="Enter x value" />
+                    <label for="b">y:</label>
+                    <input type="number" id="y" step="any" placeholder="Enter y value" />
+                     </div>
+            
+                <div style="margin-top: 20px; " class="center">
+                    <button id="btn2" class="btn" onclick="calculate2()">Calculate</button>
+                    <p id="result2">Result: \( a = \)</p>
+                </div>
+        
+            </div>
+        </section>
+
+
+        <section id="section3" class="section">
+            <div>
+                <p  class="center">
+                    \( b = \log_{10}\left(\sqrt[3]{u} + \sqrt{v} + 2\right) \) 
+                </p>
+            
+                <div style="margin-top: 20px;" class="center">
+                    <label for="u">u:</label>
+                    <input type="number" id="u" step="any" placeholder="Enter u value" />
+                    <label for="v">v:</label>
+                    <input type="number" id="v" step="any" placeholder="Enter v value" />
+                     </div>
+            
+                <div style="margin-top: 20px; " class="center">
+                    <button id="btn3" class="btn" onclick="calculate3()">Calculate</button>
+                    <p id="result3">Result: \( b = \)</p>
+                </div>
+        
+            </div>
+        </section>
+
+   
+
+        <script>
+
+            function calculate1() {
+                let b = parseFloat(document.getElementById('b').value)
+                let a = parseFloat(document.getElementById('a').value)
+                let c = parseFloat(document.getElementById('c').value)
+
+                if (isNaN(b) || isNaN(a) || isNaN(c)) {
+                    document.getElementById('result').innerHTML = "Zəhmət olmasa a, b və c üçün etibarlı rəqəmlər daxil edin."
+                    return
+                }
+
+                let hesab1 = (b ** 2) + (3 * a) 
+                let hesab2 = c / ( 2 * (b ** 2) - a) 
+                let hesab3 = ( 2 * (b ** 2) - a)
+
+                if (hesab3 === 0) {
+                    document.getElementById('result').innerHTML = "Məxrəc sıfır ola bilməz."
+                    return
+                }
+
+                let y = hesab1 + hesab2
+                document.getElementById('result').innerHTML = "Result: \\( y = " + y.toFixed(2) + " \\)"
+                MathJax.typeset()
+            }
+
+
+
+            function calculate2(){
+                let x = parseFloat(document.getElementById('x').value)
+                let y = parseFloat(document.getElementById('y').value)
+
+                if( isNaN (x) || isNaN(y) ){
+                    document.getElementById('result2').innerHTML = "Zəhmət olmasa x və y üçün etibarlı rəqəmlər daxil edin."
+                    return
+                }
+
+                let hesab5 = x **( Math.abs( y - x ))
+                let hesab6 = y ** (( x + y ) / 2)
+                let a = 0.5 * ( hesab5 + hesab6)
+                document.querySelector("#result2").innerHTML =  "Result: \\( a = " + a.toFixed(2) + " \\)"
+                MathJax.typeset()
+            }
+
+
+            function calculate3() {
+
+                const u = parseFloat(document.getElementById('u').value)
+                const v = parseFloat(document.getElementById('v').value)
+
+                const hesab7 = Math.cbrt(u)
+                const hesab8 = Math.sqrt(v) 
+
+                if( isNaN (u) || isNaN(v) ){
+                    document.getElementById('result3').innerHTML = "Zəhmət olmasa u və v üçün etibarlı rəqəmlər daxil edin."
+                    return
+                }
+
+                const b = Math.log10(hesab7 + hesab8 + 2)
+
+                document.getElementById('result3').innerHTML = `Result: \\( b = ${b.toFixed(4)} \\)`
+                MathJax.typeset()
+        }
+        </script>
+
+    </body>
+</html>
